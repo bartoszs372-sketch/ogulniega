@@ -1,237 +1,202 @@
-
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#05080f">
-<title>OGULNIEGA | Panel logowania</title>
-<style>
-:root {
-  --blue: #00aaff;
-  --cyan: #00e5ff;
-  --bg: #05080f;
-  --panel: #0b1220;
-  --muted: #8b9bb4;
-}
-* { box-sizing: border-box; }
-body {
-  margin: 0;
-  min-height: 100vh;
-  background:
-    radial-gradient(ellipse at 50% 0%, #00345b55, transparent 55%),
-    var(--bg);
-  color: #f1f7ff;
-  font-family: Inter, "Segoe UI", Arial, sans-serif;
-  display: flex;
-  flex-direction: column;
-}
-header {
-  height: 76px;
-  padding: 0 7%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border-bottom: 1px solid #16273c;
-  background: #05080fd9;
-}
-.logo {
-  font-size: 23px;
-  font-weight: 900;
-  letter-spacing: 3px;
-  color: var(--cyan);
-  text-shadow: 0 0 18px #00aaff70;
-}
-.status {
-  color: #79e9b1;
-  font-size: 12px;
-  border: 1px solid #23734f;
-  border-radius: 20px;
-  padding: 7px 12px;
-}
-main {
-  flex: 1;
-  display: grid;
-  place-items: center;
-  padding: 48px 18px;
-}
-.login-card {
-  width: 100%;
-  max-width: 430px;
-  padding: 34px;
-  background: linear-gradient(145deg, #101b2c, #080d17);
-  border: 1px solid #124b70;
-  border-radius: 18px;
-  box-shadow: 0 0 50px #0077ff13, inset 0 0 25px #008cff08;
-  animation: appear .65s ease both;
-}
-@keyframes appear {
-  from { opacity: 0; transform: translateY(15px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.icon {
-  width: 58px;
-  height: 58px;
-  display: grid;
-  place-items: center;
-  border: 1px solid #087db7;
-  border-radius: 15px;
-  background: #061e31;
-  color: var(--cyan);
-  font-size: 27px;
-  margin-bottom: 22px;
-  box-shadow: 0 0 22px #00aaff17;
-}
-h1 { font-size: 28px; margin: 0 0 10px; }
-.subtitle {
-  color: var(--muted);
-  font-size: 14px;
-  line-height: 1.6;
-  margin: 0 0 25px;
-}
-label {
-  display: block;
-  font-size: 13px;
-  margin: 18px 0 8px;
-  color: #d5e6f9;
-}
-input {
-  width: 100%;
-  background: #060b14;
-  border: 1px solid #263b54;
-  border-radius: 9px;
-  color: white;
-  font-size: 14px;
-  padding: 14px;
-  outline: none;
-  transition: border .2s, box-shadow .2s;
-}
-input:focus {
-  border-color: var(--blue);
-  box-shadow: 0 0 0 3px #00aaff18;
-}
-.demo-note {
-  font-size: 12px;
-  line-height: 1.6;
-  color: #91a9c4;
-  background: #071b2a;
-  border: 1px solid #153951;
-  padding: 12px;
-  border-radius: 9px;
-  margin-top: 20px;
-}
-button {
-  width: 100%;
-  border: 0;
-  border-radius: 9px;
-  margin-top: 22px;
-  padding: 15px;
-  color: #00101c;
-  font-size: 14px;
-  font-weight: 800;
-  background: linear-gradient(90deg, #00aaff, #00e5ff);
-  cursor: pointer;
-  transition: transform .2s, box-shadow .2s;
-}
-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 7px 25px #00aaff35;
-}
-button:focus-visible { outline: 2px solid white; outline-offset: 3px; }
-#result {
-  display: none;
-  margin-top: 20px;
-  padding: 15px;
-  border: 1px solid #247c58;
-  border-radius: 10px;
-  background: #092019;
-  line-height: 1.6;
-  font-size: 14px;
-}
-#result.visible { display: block; animation: appear .3s ease; }
-#result strong { color: #7af0b1; }
-.result-sub { color: #b3d4c4; font-size: 12px; margin-top: 5px; }
-footer {
-  text-align: center;
-  color: #60718a;
-  font-size: 12px;
-  padding: 22px;
-  border-top: 1px solid #16273c;
-}
-@media(max-width: 480px) {
-  header { height: 65px; padding: 0 5%; }
-  .logo { font-size: 19px; }
-  .login-card { padding: 25px 20px; }
-  h1 { font-size: 25px; }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Logowanie — Ogulniega</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #101020, #20204a, #391b59);
+      background-size: 200% 200%;
+      animation: tlo 8s ease infinite;
+      color: white;
+      padding: 20px;
+    }
+
+    @keyframes tlo {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .panel {
+      width: 100%;
+      max-width: 390px;
+      padding: 38px 30px;
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 22px;
+      background: rgba(15, 15, 35, 0.88);
+      box-shadow: 0 15px 60px rgba(0,0,0,0.35);
+      text-align: center;
+      animation: wejscie 0.7s ease;
+    }
+
+    @keyframes wejscie {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .logo {
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+
+    .opis {
+      color: #b8b8d0;
+      font-size: 14px;
+      margin-bottom: 28px;
+    }
+
+    .pole {
+      text-align: left;
+      margin-bottom: 18px;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      margin-bottom: 8px;
+      color: #e2e2f5;
+    }
+
+    input {
+      width: 100%;
+      padding: 14px;
+      border: 1px solid #45456b;
+      border-radius: 10px;
+      background: #19192f;
+      color: white;
+      font-size: 15px;
+      outline: none;
+      transition: 0.25s;
+    }
+
+    input:focus {
+      border-color: #a56bff;
+      box-shadow: 0 0 0 3px rgba(165,107,255,0.15);
+    }
+
+    input::placeholder {
+      color: #8585a5;
+    }
+
+    button {
+      width: 100%;
+      padding: 14px;
+      margin-top: 8px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, #8351ef, #bd55ec);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    button:active {
+      transform: scale(0.98);
+    }
+
+    .sukces {
+      font-size: 28px;
+      font-weight: bold;
+      color: #70f5a5;
+      animation: wejscie 0.5s ease;
+    }
+
+    .ukryty {
+      display: none;
+    }
+
+    @media (max-width: 420px) {
+      .panel {
+        padding: 30px 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
-<header>
-  <div class="logo">OGULNIEGA</div>
-  <div class="status">● TRYB DEMO</div>
-</header>
 
-<main>
-  <section class="login-card">
-    <div class="icon">⌘</div>
-    <h1>Witaj ponownie</h1>
-    <p class="subtitle">
-      Panel demonstracyjny OGULNIEGA.<br>
-      Przetestuj wygląd przykładowego formularza.
-    </p>
+  <main class="panel">
+    <section id="formularz">
+      <div class="logo">✦</div>
+      <h1>Ogulniega</h1>
+      <p class="opis">Zaloguj się, aby kontynuować</p>
 
-    <form id="demoForm">
-      <label for="email">Adres e-mail (przykładowy)</label>
-      <input
-        id="email"
-        type="email"
-        placeholder="demo@example.com"
-        autocomplete="off"
-        required
-      >
+      <form id="logowanie">
+        <div class="pole">
+          <label for="email">Adres e-mail</label>
+          <input
+            type="email"
+            id="email"
+            placeholder="Wpisz swój e-mail"
+            autocomplete="off"
+            required
+          >
+        </div>
 
-      <label for="password">Hasło demonstracyjne</label>
-      <input
-        id="password"
-        type="password"
-        placeholder="Wpisz dowolny tekst testowy"
-        autocomplete="off"
-        required
-      >
+        <div class="pole">
+          <label for="haslo">Hasło</label>
+          <input
+            type="text"
+            id="haslo"
+            placeholder="Wpisz swoje hasło"
+            autocomplete="off"
+            required
+          >
+        </div>
 
-      <div class="demo-note">
-        <strong>Tryb demonstracyjny</strong><br>
-        Nie wpisuj prawdziwego hasła. Formularz niczego nie wysyła ani nie zapisuje.
-      </div>
+        <button type="submit">Zaloguj się</button>
+      </form>
+    </section>
 
-      <button type="submit">Przetestuj logowanie →</button>
-    </form>
+    <section id="wynik" class="ukryty" aria-live="polite">
+      <div class="sukces">Zalogowano</div>
+    </section>
+  </main>
 
-    <div id="result" role="status" aria-live="polite">
-      <strong>✓ Test zakończony pomyślnie!</strong>
-      <div class="result-sub">
-        To tylko demonstracja wyglądu. Nie utworzono konta i nie zweryfikowano tożsamości.
-      </div>
-    </div>
-  </section>
-</main>
+  <script>
+    const formularz = document.getElementById("logowanie");
+    const panelFormularza = document.getElementById("formularz");
+    const wynik = document.getElementById("wynik");
 
-<footer>
-  OGULNIEGA © 2026 · Demonstracyjny interfejs · Brak prawdziwego logowania
-</footer>
+    formularz.addEventListener("submit", function(event) {
+      event.preventDefault();
 
-<script>
-const form = document.getElementById("demoForm");
-const result = document.getElementById("result");
+      panelFormularza.classList.add("ukryty");
+      wynik.classList.remove("ukryty");
+    });
+  </script>
 
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
-
-  // Nie odczytujemy wartości pól, nie wysyłamy ich i nie zapisujemy.
-  result.classList.add("visible");
-  result.scrollIntoView({ behavior: "smooth", block: "nearest" });
-});
-</script>
 </body>
 </html>
